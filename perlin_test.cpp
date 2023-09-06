@@ -10,15 +10,18 @@
 
 #include "lodepng.h"
 #include "FastNoise/FastNoise.h"
-
+// #include <FastNoise/Metadata.h>
 
  int main(){
 
 
     auto node = FastNoise::New<FastNoise::FractalFBm>();
-    std::cout << node->GetSIMDLevel() << std::endl;
+    std::cout << "SIMD level: " << node->GetSIMDLevel() << std::endl;
     auto noise = FastNoise::New<FastNoise::Perlin>();
     node->SetSource( noise );
+    node->SetGain( 1.0 );
+    node->SetOctaveCount(3);
+    node->SetLacunarity(2.0);
 
     
     unsigned int nums[6]={16, 32, 64, 128, 256, 512};
@@ -32,16 +35,7 @@
         std::vector<float> v;
         v.resize(N * N);
         std::clock_t c_start = std::clock();
-        // for(unsigned y = 0; y < N; y++)
-        // {
-        //     point[1] = y*8./N;
-        //     for(unsigned x = 0; x < N; x++) {
-        //         point[0] = x*8./N;
-        //         // v[N*y+x] = test_layer.getValue(point);
-        //     }
-        // }
-
-        node->GenUniformGrid2D( v.data(), 0, 0, N, N, N/8., 1337 );
+        noise->GenUniformGrid2D( v.data(), 0, 0, N, N, 1./N, 1337 );
 
         std::clock_t c_end = std::clock();
         float time_elapsed_ms = 1000.0 * (c_end-c_start) / CLOCKS_PER_SEC;

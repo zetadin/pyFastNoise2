@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+perlin_test
+
+
+# debug output
+test*.png
+bench.log

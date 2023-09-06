@@ -9,14 +9,13 @@
                 "-g",
                 "-O3",
                 "-Wall",
-                "-Ideps/FastNoise2/include",
-                "-Ldeps/FastNoise2/lib",
-                "-lFastNoise",
-                "-limnodes",
+                "-I${fileDirname}/deps/FastNoise2/include",
+                "-L${fileDirname}/deps/FastNoise2/build/lib",
                 "${file}",
-                "lodepng.cpp",
+                "${fileDirname}/lodepng.cpp",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/${fileBasenameNoExtension}",
+                "-lFastNoise",
             ],
             "options": {
                 "cwd": "${fileDirname}"

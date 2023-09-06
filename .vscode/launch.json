@@ -8,7 +8,10 @@
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
-            "environment": [],
+            "environment": [{
+                "name": "LD_LIBRARY_PATH",
+                "value": "$LD_LIBRARY_PATH:${fileDirname}/deps/FastNoise2/build/lib"
+            }],
             "externalConsole": false,
             "MIMode": "gdb",
             "setupCommands": [
