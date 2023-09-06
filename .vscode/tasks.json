@@ -8,6 +8,7 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 "-O3",
+                "-ffast-math",
                 "-Wall",
                 "-I${fileDirname}/deps/FastNoise2/include",
                 "-L${fileDirname}/deps/FastNoise2/build/lib",
